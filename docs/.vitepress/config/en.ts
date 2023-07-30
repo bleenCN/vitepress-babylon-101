@@ -11,9 +11,9 @@ export default defineConfig({
 
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: "Home", link: "/" },
-      { text: "babylonjs-101", link: "/babylonjs-101/BasicScene" },
-      { text: "Vitepress Examples", link: "/vitepress-examples" },
+      { text: "Home", link: "/en/" },
+      { text: "babylonjs-101", link: "/en/babylonjs-101/BasicScene" },
+      { text: "Vitepress Examples", link: "/en/vitepress-examples" },
     ],
 
     sidebar: {

@@ -9,10 +9,10 @@ hero:
   actions:
     - theme: brand
       text: babylonjs-101 课程
-      link: /babylonjs-101/BasicScene
+      link: /zh/babylonjs-101/BasicScene
     - theme: alt
       text: Vitepress 使用
-      link: /vitepress-examples/markdown-examples
+      link: /zh/vitepress-examples/markdown-examples
 
 features:
   - title: Feature A
