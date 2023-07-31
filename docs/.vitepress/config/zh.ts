@@ -12,7 +12,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Home", link: "/zh/" },
-      { text: "babylonjs-101", link: "/zh/babylonjs-101/BasicScene" },
+      { text: "babylonjs-101", link: "/zh/babylonjs-101/00-preface/" },
       {
         text: "Vitepress Examples",
         link: "/zh/vitepress-examples/markdown-examples",
@@ -20,12 +20,18 @@ export default defineConfig({
     ],
 
     sidebar: {
-      "babylonjs-101": [
+      "/zh/babylonjs-101": [
         {
-          text: "前言",
           items: [
-            { text: "md文档使用", link: "/markdown-examples" },
-            { text: "vitepress API 使用", link: "/api-examples" },
+            { text: "前言", link: "/zh/babylonjs-101/00-preface/" },
+            {
+              text: "01 基础场景",
+              link: "/zh/babylonjs-101/01-basic-scene/",
+            },
+            {
+              text: "02 使用标准材质",
+              link: "/zh/babylonjs-101/02-standard-materials/",
+            },
           ],
         },
       ],
@@ -47,7 +53,10 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/vuejs/vitepress" },
+      {
+        icon: "github",
+        link: "https://github.com/bleenCN/vitepress-babylon-101.git",
+      },
     ],
   },
 });

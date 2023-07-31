@@ -1,5 +1,14 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  '@babylonjs/core':
+    specifier: ^6.14.0
+    version: registry.npmmirror.com/@babylonjs/core@6.14.0
+
 devDependencies:
   vitepress:
     specifier: 1.0.0-beta.6
@@ -215,6 +224,12 @@ packages:
       '@babel/helper-validator-identifier': registry.npmmirror.com/@babel/helper-validator-identifier@7.22.5
       to-fast-properties: registry.npmmirror.com/to-fast-properties@2.0.0
     dev: true
+
+  registry.npmmirror.com/@babylonjs/core@6.14.0:
+    resolution: {integrity: sha512-ciIfWMMtV5jsnqxqTn+v/CS65yji6CXTP2drmvLlzk+k+IZjE8RfkpMqZgZozN/KNkOmIVn2Li7qRMjg4ZUGlw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@babylonjs/core/-/core-6.14.0.tgz}
+    name: '@babylonjs/core'
+    version: 6.14.0
+    dev: false
 
   registry.npmmirror.com/@docsearch/css@3.5.1:
     resolution: {integrity: sha512-2Pu9HDg/uP/IT10rbQ+4OrTQuxIWdKVUEdcw9/w7kZJv9NeHS6skJx1xuRiFyoGKwAzcHXnLp7csE99sj+O1YA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@docsearch/css/-/css-3.5.1.tgz}
