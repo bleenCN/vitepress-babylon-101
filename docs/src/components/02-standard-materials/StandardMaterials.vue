@@ -33,8 +33,6 @@ class StandardScene {
   constructor(private canvas: HTMLCanvasElement) {
     this.engine = new Engine(this.canvas, true);
     this.scene = this.createScene();
-    console.log(this.engine);
-    console.log(this.scene);
 
     this.engine.runRenderLoop(() => {
       this.scene.render();

@@ -32,6 +32,10 @@ export default defineConfig({
               text: "02 使用标准材质",
               link: "/zh/babylonjs-101/02-standard-materials/",
             },
+            {
+              text: "03 使用PBR材质",
+              link: "/zh/babylonjs-101/03-PBR-materials/",
+            },
           ],
         },
       ],
