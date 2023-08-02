@@ -8,6 +8,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
-    "@babylonjs/core": "^6.14.0"
+    "@babylonjs/core": "^6.14.0",
+    "vue": "^3.3.4"
   }
 }

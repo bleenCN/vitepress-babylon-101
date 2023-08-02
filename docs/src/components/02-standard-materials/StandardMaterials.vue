@@ -10,7 +10,7 @@ const canvasRef = ref(null);
 onMounted(() => {
   const canvas = canvasRef.value;
 
-  new StandardScene(canvas);
+  new StandardScene(canvas!);
 });
 </script>
 
@@ -33,13 +33,15 @@ class StandardScene {
   constructor(private canvas: HTMLCanvasElement) {
     this.engine = new Engine(this.canvas, true);
     this.scene = this.createScene();
+    this.createGround()
+    this.createBall()
 
     this.engine.runRenderLoop(() => {
       this.scene.render();
     });
   }
 
-  createScene(): Scene {
+  private createScene(): Scene {
     const scene = new Scene(this.engine);
 
     const camera = new FreeCamera("camera", new Vector3(0, 1, -5), scene);
@@ -53,49 +55,47 @@ class StandardScene {
     );
     hemiLight.intensity = 1;
 
+    return scene;
+  }
+
+  private createGround() {
     const ground = MeshBuilder.CreateGround(
       "ground",
       {
         width: 10,
         height: 10,
       },
-      scene
+      this.scene
     );
-    ground.material = this.createGroundMaterial(scene);
-
-    const ball = MeshBuilder.CreateSphere("ball", { diameter: 1 }, scene);
-    ball.material = this.createBallMaterial(scene);
-    ball.position = new Vector3(0, 1, 0);
-
-    return scene;
+    ground.material = this.createGroundMaterial();
   }
 
-  createGroundMaterial(scene: Scene): StandardMaterial {
-    const groundMat = new StandardMaterial("groundMat", scene);
+  private createGroundMaterial(): StandardMaterial {
+    const groundMat = new StandardMaterial("groundMat", this.scene);
     const uvScale = 5;
     const textArr: Texture[] = [];
 
     const diffTex = new Texture(
       "/assets/textures/02-standard/stone/stone_diffuse.jpg",
-      scene
+      this.scene
     );
     groundMat.diffuseTexture = diffTex;
     textArr.push(diffTex);
 
-    const aoTex = new Texture("/assets/textures/02-standard/stone/stone_ao.jpg", scene);
+    const aoTex = new Texture("/assets/textures/02-standard/stone/stone_ao.jpg", this.scene);
     groundMat.ambientTexture = aoTex;
     textArr.push(aoTex);
 
     const normalTex = new Texture(
       "/assets/textures/02-standard/stone/stone_normal.jpg",
-      scene
+      this.scene
     );
     groundMat.bumpTexture = normalTex;
     groundMat.invertNormalMapX = true;
     groundMat.invertNormalMapY = true;
     textArr.push(normalTex);
 
-    const specTex = new Texture("/assets/textures/02-standard/stone/stone_spec.jpg", scene);
+    const specTex = new Texture("/assets/textures/02-standard/stone/stone_spec.jpg", this.scene);
     groundMat.specularTexture = specTex;
     textArr.push(specTex);
 
@@ -107,8 +107,14 @@ class StandardScene {
     return groundMat;
   }
 
-  createBallMaterial(scene: Scene): StandardMaterial {
-    const ballMat = new StandardMaterial("ballMat", scene);
+  private createBall() {
+    const ball = MeshBuilder.CreateSphere("ball", { diameter: 1 }, this.scene);
+    ball.material = this.createBallMaterial();
+    ball.position = new Vector3(0, 1, 0);
+  }
+
+  private createBallMaterial(): StandardMaterial {
+    const ballMat = new StandardMaterial("ballMat", this.scene);
 
     const uvScale = 4;
     const textArr: Texture[] = [];

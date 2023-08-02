@@ -21,13 +21,15 @@ class BasicScene {
   constructor(private canvas: HTMLCanvasElement) {
     this.engine = new Engine(this.canvas, true);
     this.scene = this.CreateScene();
+    this.createGround()
+    this.createBall()
 
     this.engine.runRenderLoop(() => {
       this.scene.render();
     });
   }
 
-  CreateScene(): Scene {
+  private CreateScene(): Scene {
     const scene = new Scene(this.engine);
 
     const camera = new FreeCamera("camera", new Vector3(0, 1, -5), scene);
@@ -40,19 +42,23 @@ class BasicScene {
     );
     hemiLight.intensity = 0.5;
 
+    return scene;
+  }
+
+  private createGround() {
     const ground = MeshBuilder.CreateGround(
       "ground",
       {
         width: 10,
         height: 10,
       },
-      scene
+      this.scene
     );
+  }
 
-    const ball = MeshBuilder.CreateSphere("ball", { diameter: 1 }, scene);
+  private createBall() {
+    const ball = MeshBuilder.CreateSphere("ball", { diameter: 1 }, this.scene);
     ball.position = new Vector3(0, 1, 0);
-
-    return scene;
   }
 }
 
@@ -61,7 +67,7 @@ const canvasRef = ref(null);
 onMounted(() => {
   const canvas = canvasRef.value;
 
-  new BasicScene(canvas);
+  new BasicScene(canvas!);
 });
 </script>
 

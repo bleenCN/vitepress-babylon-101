@@ -1,8 +1,10 @@
 <script setup>
   import PBRMaterials from '/components/03-PBR-materials/PBRMaterials.vue'
+  import BilibiliPlayer from '/components/common/BilibiliPlayer.vue'
 </script>
 
 <PBRMaterials/>
+<BilibiliPlayer url="//player.bilibili.com/player.html?aid=214193334&bvid=BV1ta41177Sk&cid=723547173&page=4&high_quality=1"/>
 
 [poly haven](http://polyhaven.com)
 
