@@ -5,11 +5,13 @@
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
 
+const props = defineProps<{ model: Model }>()
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 
 onMounted(() => {
   const canvas = canvasRef.value;
-  new StandardScene(canvas!);
+  const babylonCtx = new CustomModel(canvas!);
+  babylonCtx.loadModel(props.model)
 });
 </script>
 
@@ -23,11 +25,17 @@ import {
   Texture,
   PBRMaterial,
   CubeTexture,
-  Color3,
-  GlowLayer,
+  SceneLoader,
 } from "@babylonjs/core";
+import '@babylonjs/loaders'
 
-class StandardScene {
+interface Model {
+  meshName: string,
+  path: string,
+  fileName: string
+}
+
+class CustomModel {
   scene: Scene;
   engine: Engine;
 
@@ -35,7 +43,6 @@ class StandardScene {
     this.engine = new Engine(this.canvas, true);
     this.scene = this.createScene();
     this.createAsphalt()
-    this.createMagicBall()
 
     this.engine.runRenderLoop(() => {
       this.scene.render();
@@ -55,9 +62,6 @@ class StandardScene {
     const camera = new FreeCamera("camera", new Vector3(0, 1, -5), scene);
     camera.attachControl();
     camera.speed = 0.1;
-
-    const glowLayer = new GlowLayer('glowLayer', scene)
-    glowLayer.intensity = 0.5
 
     return scene;
   }
@@ -102,47 +106,17 @@ class StandardScene {
     return pbr
   }
 
-  private createMagicBall() {
-    const ball = MeshBuilder.CreateSphere("ball", { diameter: 1 }, this.scene);
-    ball.position = new Vector3(0, 1, 0);
+  public async loadModel(model: Model) {
+    const models = await SceneLoader.ImportMeshAsync(
+      model.meshName,
+      model.path,
+      model.fileName,
+      this.scene
+    );
 
-    ball.material = this.createMagicBallPBR()
-  }
+    models.meshes.forEach(mesh => mesh.position._y += 0.1)
 
-  private createMagicBallPBR(): PBRMaterial {
-    const pbr = new PBRMaterial('ball', this.scene)
-    const uvScale = 2
-
-    const texArr: Texture[] = []
-
-    const diffTex = new Texture('/assets/textures/03-PBR/magic-ball/magic_ball_diffuse.jpg', this.scene)
-    pbr.albedoTexture = diffTex
-    texArr.push(diffTex)
-
-    const normalTex = new Texture('/assets/textures/03-PBR/magic-ball/magic_ball_normal.jpg', this.scene)
-    pbr.bumpTexture = normalTex
-    texArr.push(normalTex)
-
-    const metallicTex = new Texture('/assets/textures/03-PBR/magic-ball/magic_ball_ao_rough_metal.jpg', this.scene)
-    pbr.metallicTexture = metallicTex
-    pbr.useAmbientOcclusionFromMetallicTextureRed = true
-    pbr.useRoughnessFromMetallicTextureGreen = true
-    pbr.useMetallnessFromMetallicTextureBlue = true
-    texArr.push(metallicTex)
-
-    const emissiveTex = new Texture('/assets/textures/03-PBR/magic-ball/magic_ball_emissive.jpg', this.scene)
-    pbr.emissiveTexture = emissiveTex
-    pbr.emissiveColor = new Color3(1, 1, 1)
-    texArr.push(emissiveTex)
-
-    texArr.forEach(tex => { tex.vScale = uvScale })
-    pbr.invertNormalMapX = true
-    pbr.invertNormalMapY = true
-
-
-    texArr.forEach(tex => { tex.vScale = uvScale; tex.uScale = uvScale })
-
-    return pbr
+    console.log('models:', models);
   }
 }
 </script>
