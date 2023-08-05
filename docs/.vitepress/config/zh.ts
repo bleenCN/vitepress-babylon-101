@@ -36,6 +36,10 @@ export default defineConfig({
               text: "03 使用PBR材质",
               link: "/zh/babylonjs-101/03-PBR-materials/",
             },
+            {
+              text: "04 加载模型",
+              link: "/zh/babylonjs-101/04-custom-models/",
+            },
           ],
         },
       ],

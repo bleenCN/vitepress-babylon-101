@@ -46,7 +46,7 @@ class BasicScene {
   }
 
   private createGround() {
-    const ground = MeshBuilder.CreateGround(
+    MeshBuilder.CreateGround(
       "ground",
       {
         width: 10,

@@ -1,15 +1,33 @@
 {
+  "include": ["**/*.ts", "**/*.vue", "global.d.ts"],
+  "exclude": ["../*/__tests__/**/*.ts", "**/*.spec.ts"],
   "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
     "outDir": "dist",
-    "target": "esnext",
-    "module": "esnext",
+    "sourceMap": false,
+    "noEmit": true,
+
+    "target": "ESNext",
+    "module": "ESNext",
     "moduleResolution": "node",
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "allowJs": true,
+    "allowJs": false,
+    "skipLibCheck": true,
+
+    "noUnusedLocals": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": false,
     "strict": true,
+    "isolatedModules": true,
+    "allowUnusedLabels": false,
+
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "removeComments": false,
     "jsx": "preserve",
-    "baseUrl": "."
-  },
-  "include": ["./**/*"]
+    "lib": ["esnext", "dom"]
+  }
 }
