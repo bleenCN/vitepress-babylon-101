@@ -9,7 +9,7 @@ const canvasRef = ref<HTMLCanvasElement | null>(null);
 
 onMounted(() => {
   const canvas = canvasRef.value;
-  new StandardScene(canvas!);
+  new PBR(canvas!);
 });
 </script>
 
@@ -19,18 +19,15 @@ import {
   Engine,
   FreeCamera,
   Vector3,
-  HemisphericLight,
   MeshBuilder,
-  StandardMaterial,
   Texture,
   PBRMaterial,
   CubeTexture,
-  Mesh,
   Color3,
   GlowLayer,
 } from "@babylonjs/core";
 
-class StandardScene {
+class PBR {
   scene: Scene;
   engine: Engine;
 
