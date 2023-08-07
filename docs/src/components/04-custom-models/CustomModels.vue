@@ -5,13 +5,13 @@
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
 
-const props = defineProps<{ model: Model }>()
+const props = defineProps<{ model: Model }>();
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 
 onMounted(() => {
   const canvas = canvasRef.value;
   const babylonCtx = new CustomModel(canvas!);
-  babylonCtx.loadModel(props.model)
+  babylonCtx.loadModel(props.model);
 });
 </script>
 
@@ -27,12 +27,12 @@ import {
   CubeTexture,
   SceneLoader,
 } from "@babylonjs/core";
-import '@babylonjs/loaders'
+import "@babylonjs/loaders";
 
 interface Model {
-  meshName: string,
-  path: string,
-  fileName: string
+  meshName: string;
+  path: string;
+  fileName: string;
 }
 
 class CustomModel {
@@ -42,7 +42,7 @@ class CustomModel {
   constructor(private canvas: HTMLCanvasElement) {
     this.engine = new Engine(this.canvas, true);
     this.scene = this.createScene();
-    this.createAsphalt()
+    this.createAsphalt();
 
     this.engine.runRenderLoop(() => {
       this.scene.render();
@@ -53,11 +53,10 @@ class CustomModel {
     const scene = new Scene(this.engine);
 
     const envTex = CubeTexture.CreateFromPrefilteredData(
-      "/assets/textures/03-PBR/environment/sky.env",
+      "/assets/textures/environment/sky.env",
       scene
     );
-    scene.createDefaultSkybox(envTex, true)
-
+    scene.createDefaultSkybox(envTex, true);
 
     const camera = new FreeCamera("camera", new Vector3(0, 1, -5), scene);
     camera.attachControl();
@@ -79,31 +78,41 @@ class CustomModel {
   }
 
   private createAsphaltPBR(): PBRMaterial {
-    const pbr = new PBRMaterial('asphalt', this.scene)
-    const uvScale = 2
+    const pbr = new PBRMaterial("asphalt", this.scene);
+    const uvScale = 2;
 
-    const texArr: Texture[] = []
+    const texArr: Texture[] = [];
 
-    const diffTex = new Texture('/assets/textures/03-PBR/asphalt/asphalt_diffuse.jpg', this.scene)
-    pbr.albedoTexture = diffTex
-    texArr.push(diffTex)
+    const diffTex = new Texture(
+      "/assets/textures/asphalt/asphalt_diffuse.jpg",
+      this.scene
+    );
+    pbr.albedoTexture = diffTex;
+    texArr.push(diffTex);
 
-    const normalTex = new Texture('/assets/textures/03-PBR/asphalt/asphalt_normal.jpg', this.scene)
-    pbr.bumpTexture = normalTex
-    texArr.push(normalTex)
+    const normalTex = new Texture(
+      "/assets/textures/asphalt/asphalt_normal.jpg",
+      this.scene
+    );
+    pbr.bumpTexture = normalTex;
+    texArr.push(normalTex);
 
-    const metallicTex = new Texture('/assets/textures/03-PBR/asphalt/asphalt_ao_rough_metal.jpg', this.scene)
-    pbr.metallicTexture = metallicTex
-    pbr.useAmbientOcclusionFromMetallicTextureRed = true
-    pbr.useRoughnessFromMetallicTextureGreen = true
-    pbr.useMetallnessFromMetallicTextureBlue = true
-    texArr.push(metallicTex)
+    const metallicTex = new Texture(
+      "/assets/textures/asphalt/asphalt_ao_rough_metal.jpg",
+      this.scene
+    );
+    pbr.metallicTexture = metallicTex;
+    pbr.useAmbientOcclusionFromMetallicTextureRed = true;
+    pbr.useRoughnessFromMetallicTextureGreen = true;
+    pbr.useMetallnessFromMetallicTextureBlue = true;
+    texArr.push(metallicTex);
 
-
-    texArr.forEach(tex => { tex.vScale = uvScale })
-    pbr.invertNormalMapX = true
-    pbr.invertNormalMapY = true
-    return pbr
+    texArr.forEach((tex) => {
+      tex.vScale = uvScale;
+    });
+    pbr.invertNormalMapX = true;
+    pbr.invertNormalMapY = true;
+    return pbr;
   }
 
   public async loadModel(model: Model) {
@@ -114,9 +123,9 @@ class CustomModel {
       this.scene
     );
 
-    models.meshes.forEach(mesh => mesh.position._y += 0.1)
+    models.meshes.forEach((mesh) => (mesh.position._y += 0.1));
 
-    console.log('models:', models);
+    console.log("models:", models);
   }
 }
 </script>

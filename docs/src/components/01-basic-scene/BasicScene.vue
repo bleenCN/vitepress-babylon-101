@@ -20,16 +20,16 @@ class BasicScene {
 
   constructor(private canvas: HTMLCanvasElement) {
     this.engine = new Engine(this.canvas, true);
-    this.scene = this.CreateScene();
-    this.createGround()
-    this.createBall()
+    this.scene = this.createScene();
+    this.createGround();
+    this.createBall();
 
     this.engine.runRenderLoop(() => {
       this.scene.render();
     });
   }
 
-  private CreateScene(): Scene {
+  private createScene(): Scene {
     const scene = new Scene(this.engine);
 
     const camera = new FreeCamera("camera", new Vector3(0, 1, -5), scene);

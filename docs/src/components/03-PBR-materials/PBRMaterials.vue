@@ -34,8 +34,8 @@ class PBR {
   constructor(private canvas: HTMLCanvasElement) {
     this.engine = new Engine(this.canvas, true);
     this.scene = this.createScene();
-    this.createAsphalt()
-    this.createMagicBall()
+    this.createAsphalt();
+    this.createMagicBall();
 
     this.engine.runRenderLoop(() => {
       this.scene.render();
@@ -46,18 +46,17 @@ class PBR {
     const scene = new Scene(this.engine);
 
     const envTex = CubeTexture.CreateFromPrefilteredData(
-      "/assets/textures/03-PBR/environment/sky.env",
+      "/assets/textures/environment/sky.env",
       scene
     );
-    scene.createDefaultSkybox(envTex, true)
-
+    scene.createDefaultSkybox(envTex, true);
 
     const camera = new FreeCamera("camera", new Vector3(0, 1, -5), scene);
     camera.attachControl();
     camera.speed = 0.1;
 
-    const glowLayer = new GlowLayer('glowLayer', scene)
-    glowLayer.intensity = 0.5
+    const glowLayer = new GlowLayer("glowLayer", scene);
+    glowLayer.intensity = 0.5;
 
     return scene;
   }
@@ -75,74 +74,100 @@ class PBR {
   }
 
   private createAsphaltPBR(): PBRMaterial {
-    const pbr = new PBRMaterial('asphalt', this.scene)
-    const uvScale = 2
+    const pbr = new PBRMaterial("asphalt", this.scene);
+    const uvScale = 2;
 
-    const texArr: Texture[] = []
+    const texArr: Texture[] = [];
 
-    const diffTex = new Texture('/assets/textures/03-PBR/asphalt/asphalt_diffuse.jpg', this.scene)
-    pbr.albedoTexture = diffTex
-    texArr.push(diffTex)
+    const diffTex = new Texture(
+      "/assets/textures/asphalt/asphalt_diffuse.jpg",
+      this.scene
+    );
+    pbr.albedoTexture = diffTex;
+    texArr.push(diffTex);
 
-    const normalTex = new Texture('/assets/textures/03-PBR/asphalt/asphalt_normal.jpg', this.scene)
-    pbr.bumpTexture = normalTex
-    texArr.push(normalTex)
+    const normalTex = new Texture(
+      "/assets/textures/asphalt/asphalt_normal.jpg",
+      this.scene
+    );
+    pbr.bumpTexture = normalTex;
+    texArr.push(normalTex);
 
-    const metallicTex = new Texture('/assets/textures/03-PBR/asphalt/asphalt_ao_rough_metal.jpg', this.scene)
-    pbr.metallicTexture = metallicTex
-    pbr.useAmbientOcclusionFromMetallicTextureRed = true
-    pbr.useRoughnessFromMetallicTextureGreen = true
-    pbr.useMetallnessFromMetallicTextureBlue = true
-    texArr.push(metallicTex)
+    const metallicTex = new Texture(
+      "/assets/textures/asphalt/asphalt_ao_rough_metal.jpg",
+      this.scene
+    );
+    pbr.metallicTexture = metallicTex;
+    pbr.useAmbientOcclusionFromMetallicTextureRed = true;
+    pbr.useRoughnessFromMetallicTextureGreen = true;
+    pbr.useMetallnessFromMetallicTextureBlue = true;
+    texArr.push(metallicTex);
 
-
-    texArr.forEach(tex => { tex.vScale = uvScale })
-    pbr.invertNormalMapX = true
-    pbr.invertNormalMapY = true
-    return pbr
+    texArr.forEach((tex) => {
+      tex.vScale = uvScale;
+    });
+    pbr.invertNormalMapX = true;
+    pbr.invertNormalMapY = true;
+    return pbr;
   }
 
   private createMagicBall() {
     const ball = MeshBuilder.CreateSphere("ball", { diameter: 1 }, this.scene);
     ball.position = new Vector3(0, 1, 0);
 
-    ball.material = this.createMagicBallPBR()
+    ball.material = this.createMagicBallPBR();
   }
 
   private createMagicBallPBR(): PBRMaterial {
-    const pbr = new PBRMaterial('ball', this.scene)
-    const uvScale = 2
+    const pbr = new PBRMaterial("ball", this.scene);
+    const uvScale = 2;
 
-    const texArr: Texture[] = []
+    const texArr: Texture[] = [];
 
-    const diffTex = new Texture('/assets/textures/03-PBR/magic-ball/magic_ball_diffuse.jpg', this.scene)
-    pbr.albedoTexture = diffTex
-    texArr.push(diffTex)
+    const diffTex = new Texture(
+      "/assets/textures/magic-ball/magic_ball_diffuse.jpg",
+      this.scene
+    );
+    pbr.albedoTexture = diffTex;
+    texArr.push(diffTex);
 
-    const normalTex = new Texture('/assets/textures/03-PBR/magic-ball/magic_ball_normal.jpg', this.scene)
-    pbr.bumpTexture = normalTex
-    texArr.push(normalTex)
+    const normalTex = new Texture(
+      "/assets/textures/magic-ball/magic_ball_normal.jpg",
+      this.scene
+    );
+    pbr.bumpTexture = normalTex;
+    texArr.push(normalTex);
 
-    const metallicTex = new Texture('/assets/textures/03-PBR/magic-ball/magic_ball_ao_rough_metal.jpg', this.scene)
-    pbr.metallicTexture = metallicTex
-    pbr.useAmbientOcclusionFromMetallicTextureRed = true
-    pbr.useRoughnessFromMetallicTextureGreen = true
-    pbr.useMetallnessFromMetallicTextureBlue = true
-    texArr.push(metallicTex)
+    const metallicTex = new Texture(
+      "/assets/textures/magic-ball/magic_ball_ao_rough_metal.jpg",
+      this.scene
+    );
+    pbr.metallicTexture = metallicTex;
+    pbr.useAmbientOcclusionFromMetallicTextureRed = true;
+    pbr.useRoughnessFromMetallicTextureGreen = true;
+    pbr.useMetallnessFromMetallicTextureBlue = true;
+    texArr.push(metallicTex);
 
-    const emissiveTex = new Texture('/assets/textures/03-PBR/magic-ball/magic_ball_emissive.jpg', this.scene)
-    pbr.emissiveTexture = emissiveTex
-    pbr.emissiveColor = new Color3(1, 1, 1)
-    texArr.push(emissiveTex)
+    const emissiveTex = new Texture(
+      "/assets/textures/magic-ball/magic_ball_emissive.jpg",
+      this.scene
+    );
+    pbr.emissiveTexture = emissiveTex;
+    pbr.emissiveColor = new Color3(1, 1, 1);
+    texArr.push(emissiveTex);
 
-    texArr.forEach(tex => { tex.vScale = uvScale })
-    pbr.invertNormalMapX = true
-    pbr.invertNormalMapY = true
+    texArr.forEach((tex) => {
+      tex.vScale = uvScale;
+    });
+    pbr.invertNormalMapX = true;
+    pbr.invertNormalMapY = true;
 
+    texArr.forEach((tex) => {
+      tex.vScale = uvScale;
+      tex.uScale = uvScale;
+    });
 
-    texArr.forEach(tex => { tex.vScale = uvScale; tex.uScale = uvScale })
-
-    return pbr
+    return pbr;
   }
 }
 </script>

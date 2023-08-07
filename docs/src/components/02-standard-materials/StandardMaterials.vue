@@ -33,8 +33,8 @@ class StandardScene {
   constructor(private canvas: HTMLCanvasElement) {
     this.engine = new Engine(this.canvas, true);
     this.scene = this.createScene();
-    this.createGround()
-    this.createBall()
+    this.createGround();
+    this.createBall();
 
     this.engine.runRenderLoop(() => {
       this.scene.render();
@@ -76,18 +76,21 @@ class StandardScene {
     const textArr: Texture[] = [];
 
     const diffTex = new Texture(
-      "/assets/textures/02-standard/stone/stone_diffuse.jpg",
+      "/assets/textures/stone/stone_diffuse.jpg",
       this.scene
     );
     groundMat.diffuseTexture = diffTex;
     textArr.push(diffTex);
 
-    const aoTex = new Texture("/assets/textures/02-standard/stone/stone_ao.jpg", this.scene);
+    const aoTex = new Texture(
+      "/assets/textures/stone/stone_ao.jpg",
+      this.scene
+    );
     groundMat.ambientTexture = aoTex;
     textArr.push(aoTex);
 
     const normalTex = new Texture(
-      "/assets/textures/02-standard/stone/stone_normal.jpg",
+      "/assets/textures/stone/stone_normal.jpg",
       this.scene
     );
     groundMat.bumpTexture = normalTex;
@@ -95,7 +98,10 @@ class StandardScene {
     groundMat.invertNormalMapY = true;
     textArr.push(normalTex);
 
-    const specTex = new Texture("/assets/textures/02-standard/stone/stone_spec.jpg", this.scene);
+    const specTex = new Texture(
+      "/assets/textures/stone/stone_spec.jpg",
+      this.scene
+    );
     groundMat.specularTexture = specTex;
     textArr.push(specTex);
 
@@ -119,21 +125,21 @@ class StandardScene {
     const uvScale = 4;
     const textArr: Texture[] = [];
 
-    const diffTex = new Texture("/assets/textures/02-standard/metal/metal_diffuse.jpg");
+    const diffTex = new Texture("/assets/textures/metal/metal_diffuse.jpg");
     ballMat.diffuseTexture = diffTex;
     textArr.push(diffTex);
 
-    const aoTex = new Texture("/assets/textures/02-standard/metal/metal_ao.jpg");
+    const aoTex = new Texture("/assets/textures/metal/metal_ao.jpg");
     ballMat.ambientTexture = aoTex;
     textArr.push(aoTex);
 
-    const normalTex = new Texture("/assets/textures/02-standard/metal/metal_normal.jpg");
+    const normalTex = new Texture("/assets/textures/metal/metal_normal.jpg");
     ballMat.bumpTexture = normalTex;
     ballMat.invertNormalMapX = true;
     ballMat.invertNormalMapY = true;
     textArr.push(normalTex);
 
-    const specTex = new Texture("/assets/textures/02-standard/metal/metal_spec.jpg");
+    const specTex = new Texture("/assets/textures/metal/metal_spec.jpg");
     ballMat.specularTexture = specTex;
     textArr.push(specTex);
 

@@ -1,8 +1,8 @@
 <script setup>
-  import LightsShadows from '/components/05-lights-shadows/LightsShadows.vue'
+  import LightsScene from '/components/05-lights-shadows/LightsScene.vue'
 </script>
 
-<LightsShadows />
+<LightsScene demoType="hemiLight" />
 
 [poly haven](http://polyhaven.com)
 

@@ -11,11 +11,20 @@ dependencies:
   '@babylonjs/loaders':
     specifier: ^6.15.0
     version: registry.npmmirror.com/@babylonjs/loaders@6.15.0(@babylonjs/core@6.14.0)(babylonjs-gltf2interface@6.15.0)
+  dat.gui:
+    specifier: ^0.7.9
+    version: registry.npmmirror.com/dat.gui@0.7.9
+  hex-rgb:
+    specifier: ^5.0.0
+    version: registry.npmmirror.com/hex-rgb@5.0.0
   vue:
     specifier: ^3.3.4
     version: registry.npmmirror.com/vue@3.3.4
 
 devDependencies:
+  '@types/dat.gui':
+    specifier: ^0.7.10
+    version: registry.npmmirror.com/@types/dat.gui@0.7.10
   vitepress:
     specifier: 1.0.0-beta.6
     version: registry.npmmirror.com/vitepress@1.0.0-beta.6(@algolia/client-search@4.19.1)(search-insights@2.7.0)
@@ -541,6 +550,12 @@ packages:
     name: '@jridgewell/sourcemap-codec'
     version: 1.4.15
 
+  registry.npmmirror.com/@types/dat.gui@0.7.10:
+    resolution: {integrity: sha512-sLifoNrvs4lgJkAUZcTB28dbWy0AM05Yc0BzTqHheK0tRYRVsJHoFLocB5heDbb5amaFLEXna41GOM6IG06oqA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/dat.gui/-/dat.gui-0.7.10.tgz}
+    name: '@types/dat.gui'
+    version: 0.7.10
+    dev: true
+
   registry.npmmirror.com/@types/web-bluetooth@0.0.17:
     resolution: {integrity: sha512-4p9vcSmxAayx72yn70joFoL44c9MO/0+iVEBIQXe3v2h2SiAsEIo/G5v6ObFWvNKRFjbrVadNf9LqEEZeQPzdA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/web-bluetooth/-/web-bluetooth-0.0.17.tgz}
     name: '@types/web-bluetooth'
@@ -791,6 +806,12 @@ packages:
     name: csstype
     version: 3.1.2
 
+  registry.npmmirror.com/dat.gui@0.7.9:
+    resolution: {integrity: sha512-sCNc1OHobc+Erc1HqiswYgHdVNpSJUlk/Hz8vzOCsER7rl+oF/4+v8GXFUyCgtXpoCX6+bnmg07DedLvBLwYKQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/dat.gui/-/dat.gui-0.7.9.tgz}
+    name: dat.gui
+    version: 0.7.9
+    dev: false
+
   registry.npmmirror.com/esbuild@0.18.17:
     resolution: {integrity: sha512-1GJtYnUxsJreHYA0Y+iQz2UEykonY66HNWOb0yXYZi9/kNrORUEHVg87eQsCtqh59PEJ5YVZJO98JHznMJSWjg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/esbuild/-/esbuild-0.18.17.tgz}
     name: esbuild
@@ -845,6 +866,13 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  registry.npmmirror.com/hex-rgb@5.0.0:
+    resolution: {integrity: sha512-NQO+lgVUCtHxZ792FodgW0zflK+ozS9X9dwGp9XvvmPlH7pyxd588cn24TD3rmPm/N0AIRXF10Otah8yKqGw4w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/hex-rgb/-/hex-rgb-5.0.0.tgz}
+    name: hex-rgb
+    version: 5.0.0
+    engines: {node: '>=12'}
+    dev: false
 
   registry.npmmirror.com/jsonc-parser@3.2.0:
     resolution: {integrity: sha512-gfFQZrcTc8CnKXp6Y4/CBT3fTc0OVuDofpre4aEeEpSBPV5X5v4+Vmx+8snU7RLPrNHPKSgLxGo9YuQzz20o+w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jsonc-parser/-/jsonc-parser-3.2.0.tgz}

@@ -12,7 +12,11 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Home", link: "/zh/" },
-      { text: "babylonjs-101", link: "/zh/babylonjs-101/00-preface/" },
+      {
+        text: "babylonjs-101",
+        link: "/zh/babylonjs-101/00-preface/",
+        activeMatch: "^/zh/babylonjs-101",
+      },
       {
         text: "Vitepress Examples",
         link: "/zh/vitepress-examples/markdown-examples",
@@ -39,6 +43,10 @@ export default defineConfig({
             {
               text: "04 加载模型",
               link: "/zh/babylonjs-101/04-custom-models/",
+            },
+            {
+              text: "05 动态光影",
+              link: "/zh/babylonjs-101/05-lights-shadows/",
             },
           ],
         },
