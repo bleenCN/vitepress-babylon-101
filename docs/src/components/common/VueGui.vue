@@ -5,22 +5,21 @@
 </template>
 
 <script setup lang="ts">
-import { GUI } from 'dat.gui';
-import { onMounted, ref } from 'vue';
+import { GUI } from "dat.gui";
+import { onMounted, ref } from "vue";
 
 const emits = defineEmits<{
-  (e: 'gui', value: GUI): void
-}>()
+  (e: "gui", value: GUI): void;
+}>();
 
-
-const guiRef = ref<HTMLDivElement | null>(null)
-const gui = new GUI()
+const guiRef = ref<HTMLDivElement | null>(null);
+const gui = new GUI();
 
 onMounted(() => {
-  const guicontainer = guiRef.value
-  guicontainer?.appendChild(gui.domElement)
-  emits('gui', gui)
-})
+  const guicontainer = guiRef.value;
+  guicontainer?.appendChild(gui.domElement);
+  emits("gui", gui);
+});
 </script>
 
 <style>
@@ -29,9 +28,10 @@ onMounted(() => {
   color: #000;
 }
 
-.gui>.title {
+.gui > .title {
   color: #fff;
   text-align: center;
+  font-size: 12px;
 }
 
 .gui input,
@@ -44,5 +44,8 @@ onMounted(() => {
 
 .gui .dg.a {
   margin-right: 0;
+}
+.vp-doc li + li {
+  margin-top: 0px;
 }
 </style>

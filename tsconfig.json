@@ -2,9 +2,12 @@
   "include": ["**/*.ts", "**/*.vue", "global.d.ts"],
   "exclude": ["../*/__tests__/**/*.ts", "**/*.spec.ts"],
   "compilerOptions": {
-    "baseUrl": ".",
-    "rootDir": ".",
+    "baseUrl": "./docs/src",
+    "rootDir": "./docs/src",
     "outDir": "dist",
+    "paths": {
+      "/utils/*": ["utils/*"]
+    },
     "sourceMap": false,
     "noEmit": true,
 

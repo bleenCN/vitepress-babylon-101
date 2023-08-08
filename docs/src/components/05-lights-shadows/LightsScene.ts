@@ -18,6 +18,7 @@ import {
 } from "@babylonjs/core";
 import "@babylonjs/loaders";
 import hexRgb from "hex-rgb";
+import { Format } from "/utils/format";
 
 export interface LightColorConfig {
   diffuse?: Color3 | string;
@@ -161,20 +162,12 @@ export class LightsScene {
     if (!this.light) return;
     console.log("set");
 
-    if (!!config.diffuse) this.light.diffuse = this.formatColor(config.diffuse);
+    if (!!config.diffuse) this.light.diffuse = Format.getColor3(config.diffuse);
     if (!!config.specular)
-      this.light.specular = this.formatColor(config.specular);
+      this.light.specular = Format.getColor3(config.specular);
 
     if (!!config.ground && this.light instanceof HemisphericLight)
-      this.light.groundColor = this.formatColor(config.ground);
-  }
-
-  formatColor(color: Color3 | string) {
-    if (typeof color === "string") {
-      const arr = hexRgb(color, { format: "array" });
-      const rgb = arr.slice(0, 3).map((n) => n / 255);
-      return new Color3(...rgb);
-    } else return color;
+      this.light.groundColor = Format.getColor3(config.ground);
   }
 
   private removeLight() {
