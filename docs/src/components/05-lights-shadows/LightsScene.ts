@@ -25,6 +25,12 @@ export interface LightColorConfig {
   ground?: Color3 | string;
 }
 
+export type LightType =
+  | "hemiLight"
+  | "pointLight"
+  | "directionalLight"
+  | "spotLight";
+
 export class LightsScene {
   scene: Scene;
   engine: Engine;
@@ -81,7 +87,30 @@ export class LightsScene {
     ball.position = new Vector3(0, 1, -1);
   }
 
-  createHemiLight() {
+  createLight(type: LightType) {
+    this.removeLight();
+
+    switch (type) {
+      case "hemiLight":
+        this.createHemiLight();
+        break;
+      case "pointLight":
+        this.createPointLight();
+        break;
+      case "directionalLight":
+        this.createDirectionalLight();
+        break;
+      case "spotLight":
+        this.createSpotLight();
+        break;
+    }
+  }
+
+  setLightIntensity(intensity: number) {
+    if (this.light) this.light.intensity = intensity;
+  }
+
+  private createHemiLight() {
     const hemiLight = new HemisphericLight(
       "hemiLight",
       new Vector3(0, 1, 0),
@@ -92,7 +121,7 @@ export class LightsScene {
     this.createGizmos(this.light);
   }
 
-  createPointLight() {
+  private createPointLight() {
     const pointLight = new PointLight(
       "pointLight",
       new Vector3(0, 1, 0),
@@ -103,7 +132,7 @@ export class LightsScene {
     this.createGizmos(this.light);
   }
 
-  createDirectionalLight() {
+  private createDirectionalLight() {
     const pointLight = new DirectionalLight(
       "directionalLight",
       new Vector3(0, -1, 0),
@@ -113,13 +142,14 @@ export class LightsScene {
 
     this.createGizmos(this.light);
   }
-  createSpotLight() {
+
+  private createSpotLight() {
     const pointLight = new SpotLight(
       "spotLight",
       new Vector3(0, 1, -3),
       new Vector3(0, 0, 1),
-      45,
-      0,
+      Math.PI / 2,
+      1,
       this.scene
     );
     this.light = pointLight;
@@ -147,7 +177,7 @@ export class LightsScene {
     } else return color;
   }
 
-  removeLight() {
+  private removeLight() {
     if (this.light) {
       this.light.dispose();
     }
