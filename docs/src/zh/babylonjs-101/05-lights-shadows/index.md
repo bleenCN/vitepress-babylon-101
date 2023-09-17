@@ -4,8 +4,8 @@
   import Shadow from '/components/05-lights-shadows/Shadow.vue'
 </script>
 
-<!-- <LightsScene /> -->
-<!-- <BaseScene/> -->
+<LightsScene />
+<BaseScene/>
 <Shadow />
 
 [poly haven](http://polyhaven.com)

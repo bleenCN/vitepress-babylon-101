@@ -48,6 +48,10 @@ export default defineConfig({
               text: "05 动态光影",
               link: "/zh/babylonjs-101/05-lights-shadows/",
             },
+            {
+              text: "06 自定义加载动画",
+              link: "/zh/babylonjs-101/06-custom-loading-screen/",
+            },
           ],
         },
       ],
